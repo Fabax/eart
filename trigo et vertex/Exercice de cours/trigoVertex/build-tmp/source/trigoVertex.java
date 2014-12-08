@@ -14,18 +14,16 @@ import java.io.IOException;
 
 public class trigoVertex extends PApplet {
 
-float angle, rayon ; 
-
-int satX, satY; 
+int rayon ; 
+float satX, satY; 
 int tailleEllipse; 
-int angle360; 
+boolean debug = false;
 
 public void setup() {
 	size(512, 512, P2D);
 	background(255);
-	tailleEllipse = 200;
+	tailleEllipse = 400;
 	rayon = tailleEllipse/2; 
-	angle = radians(angle360); 
 	
 	smooth(8);
 }
@@ -34,36 +32,41 @@ public void draw() {
 	background(255);
 
 	pushMatrix();
-		//cercle de debug 
-		fill(255);
-		stroke(120);
-		strokeWeight(3);
 		translate(width/2, height/2);
-		// ellipse(0, 0, tailleEllipse, tailleEllipse );
-		
-		// fill(255,0,0);
-		beginShape();
-	
-
-		int angleMax = 360;
-		
-		for (int i = 0; i < 10; i++) {
-
-			int r = (int) random(50,120);
-			satX = PApplet.parseInt(rayon * sin(i*4));
-			satY = PApplet.parseInt(rayon * cos(i*4));
-
-			vertex(satX, satY);
-		}
-
-		endShape();
-
-
-		
+		multiShape(30,rayon);
 	popMatrix();
 
-	angle = radians(angle360++); 
-	
+	noLoop();
+}
+
+public void multiShape(int _angle, int _rayon){
+	int iterations =  360/_angle;
+	int currentAngle = 0; 
+
+	fill(0);
+	stroke(0);
+	beginShape();
+		
+	for (int i = 0; i < iterations; i++) {
+		
+		satX = _rayon * sin(radians(currentAngle));
+		satY = _rayon * cos(radians(currentAngle));
+		
+		vertex(satX, satY);
+
+		if(debug){
+			line(0, 0, satX, satY);
+			text(currentAngle, satX+20, satY+20);
+			ellipse(satX, satY, 20, 20);
+			println("currentAngle: "+currentAngle);
+		}
+
+		currentAngle += _angle;
+
+		// println("var: "+var);
+	}
+
+	endShape();
 }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "trigoVertex" };
