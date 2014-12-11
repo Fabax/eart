@@ -7,7 +7,7 @@ class Gommette  {
 	float timeColor = 0.01; 
 
 	Gommette (float _t) {
-		taille = _t; 
+		taille = _t-10; 
 		noiseColor.x = round(random(0, 255));
 		noiseColor.y = round(random(0, 255));
 		noiseColor.z = round(random(0, 255));
@@ -26,7 +26,7 @@ class Gommette  {
 
 	void animate()	{
 	   float distanceSourie = dist(mouseX, mouseY, p.x, p.y);
-	   if (distanceSourie < taille){
+	   if (distanceSourie < taille/2){
 
 	   	noiseColor.x = noise(timeColor);
 	   	noiseColor.y = noise(timeColor+1000);
@@ -42,6 +42,11 @@ class Gommette  {
 	   }else{
 	   	fill(c.x,c.y,c.z);
 	   }
+	}
+
+	void setPosition(int _x, int _y){
+		p.x = _x; 
+		p.y = _y; 
 	}
 
 }

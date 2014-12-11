@@ -12,20 +12,53 @@ import java.io.InputStream;
 import java.io.OutputStream; 
 import java.io.IOException; 
 
-public class array extends PApplet {
+public class array1 extends PApplet {
 
-Gommette gommette; 
+int cols; 
+int rows; 
+int w, h; 
+Gommette[] nbGommettes; 
+
+int tailleGommette; 
 
 public void setup() {
-	size(600, 600);
-	background(255);
-	gommette = new Gommette(50); 
+	cols = 5; 
+	rows = cols; 
+	tailleGommette = 100; 
+
+	nbGommettes = new Gommette[cols*rows];
+
+	for (int i = 0; i < nbGommettes.length; i++) {
+		nbGommettes[i] = new Gommette(tailleGommette);
+		println("ok: ");
+	}
+
+	w = ((tailleGommette) * cols)+tailleGommette; 
+	h = w; 
+
+
+	size(h, w, P2D);
+	background(0);
+
+	smooth(8);
+	noStroke();
+	// gommette = new Gommette(50); 
+
 }
 
 public void draw() {
-	background(255);
-	// translate(width/2, height/2);
-	gommette.render();
+	background(0);
+
+	int gommetteIndex = 0; 
+	for (int i = 1; i <= rows; i++) {
+		for (int j = 1; j <= cols; j++) {
+			nbGommettes[gommetteIndex].setPosition(tailleGommette*i, tailleGommette*j);
+			nbGommettes[gommetteIndex].render();
+			gommetteIndex++;
+		}
+	}
+
+	// gommette.render();
 }
 
 class Gommette  {
@@ -37,7 +70,7 @@ class Gommette  {
 	float timeColor = 0.01f; 
 
 	Gommette (float _t) {
-		taille = _t; 
+		taille = _t-10; 
 		noiseColor.x = round(random(0, 255));
 		noiseColor.y = round(random(0, 255));
 		noiseColor.z = round(random(0, 255));
@@ -56,7 +89,7 @@ class Gommette  {
 
 	public void animate()	{
 	   float distanceSourie = dist(mouseX, mouseY, p.x, p.y);
-	   if (distanceSourie < taille){
+	   if (distanceSourie < taille/2){
 
 	   	noiseColor.x = noise(timeColor);
 	   	noiseColor.y = noise(timeColor+1000);
@@ -74,9 +107,14 @@ class Gommette  {
 	   }
 	}
 
+	public void setPosition(int _x, int _y){
+		p.x = _x; 
+		p.y = _y; 
+	}
+
 }
   static public void main(String[] passedArgs) {
-    String[] appletArgs = new String[] { "array" };
+    String[] appletArgs = new String[] { "array1" };
     if (passedArgs != null) {
       PApplet.main(concat(appletArgs, passedArgs));
     } else {
