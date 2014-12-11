@@ -12,8 +12,19 @@ class Gommette  {
 		noiseColor.y = round(random(0, 255));
 		noiseColor.z = round(random(0, 255));
 
-		p.x = width/2; 
-		p.y = height/2; 
+		// p.x = width/2; 
+		// p.y = height/2; 
+
+	}
+
+	Gommette (int _x, int _y) {
+		taille = (int) random(30, 100); 
+		noiseColor.x = round(random(0, 255));
+		noiseColor.y = round(random(0, 255));
+		noiseColor.z = round(random(0, 255));
+
+		p.x = _x; 
+		p.y = _y; 
 
 	}
 
@@ -48,5 +59,7 @@ class Gommette  {
 		p.x = _x; 
 		p.y = _y; 
 	}
+
+	
 
 }

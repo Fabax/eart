@@ -12,12 +12,12 @@ import java.io.InputStream;
 import java.io.OutputStream; 
 import java.io.IOException; 
 
-public class array1 extends PApplet {
+public class arrayList extends PApplet {
 
 int cols; 
 int rows; 
 int w, h; 
-Gommette[] nbGommettes; 
+ArrayList<Gommette> gommettes = new ArrayList<Gommette>();
 
 int tailleGommette; 
 
@@ -25,40 +25,34 @@ public void setup() {
 	cols = 5; 
 	rows = cols; 
 	tailleGommette = 100; 
-
-	nbGommettes = new Gommette[cols*rows];
-
-	for (int i = 0; i < nbGommettes.length; i++) {
-		nbGommettes[i] = new Gommette(tailleGommette);
-		println("ok: ");
-	}
+	// nbGommettes = new Gommette[cols*rows];
 
 	w = ((tailleGommette) * cols)+tailleGommette; 
 	h = w; 
 
-
 	size(h, w, P2D);
 	background(0);
-
 	smooth(8);
 	noStroke();
-	// gommette = new Gommette(50); 
-
 }
 
 public void draw() {
 	background(0);
 
-	int gommetteIndex = 0; 
-	for (int i = 1; i <= rows; i++) {
-		for (int j = 1; j <= cols; j++) {
-			nbGommettes[gommetteIndex].setPosition(tailleGommette*i, tailleGommette*j);
-			nbGommettes[gommetteIndex].render();
-			gommetteIndex++;
-		}
+	for (int i = 0; i < gommettes.size(); i++) {
+	  Gommette currentGommette = gommettes.get(i);
+	  currentGommette.render();
 	}
 
-	// gommette.render();
+	// The second is using an enhanced loop:
+	// for (Gommette currentGommette : gommettes) {
+	//   currentGommette.render();
+	// }
+
+}
+
+public void mousePressed() {
+	gommettes.add(new Gommette(mouseX,mouseY));
 }
 
 class Gommette  {
@@ -75,8 +69,19 @@ class Gommette  {
 		noiseColor.y = round(random(0, 255));
 		noiseColor.z = round(random(0, 255));
 
-		p.x = width/2; 
-		p.y = height/2; 
+		// p.x = width/2; 
+		// p.y = height/2; 
+
+	}
+
+	Gommette (int _x, int _y) {
+		taille = (int) random(30, 100); 
+		noiseColor.x = round(random(0, 255));
+		noiseColor.y = round(random(0, 255));
+		noiseColor.z = round(random(0, 255));
+
+		p.x = _x; 
+		p.y = _y; 
 
 	}
 
@@ -114,7 +119,7 @@ class Gommette  {
 
 }
   static public void main(String[] passedArgs) {
-    String[] appletArgs = new String[] { "array1" };
+    String[] appletArgs = new String[] { "arrayList" };
     if (passedArgs != null) {
       PApplet.main(concat(appletArgs, passedArgs));
     } else {
