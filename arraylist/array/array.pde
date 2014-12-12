@@ -14,7 +14,7 @@ void setup() {
 
 	for (int i = 0; i < nbGommettes.length; i++) {
 		nbGommettes[i] = new Gommette(tailleGommette);
-		println("ok: ");
+		// println("ok: ");
 	}
 
 	w = ((tailleGommette) * cols)+tailleGommette; 

@@ -28,13 +28,20 @@ void draw() {
 	}
 
 	// The second is using an enhanced loop:
-	// for (Gommette currentGommette : gommettes) {
-	//   currentGommette.render();
-	// }
+	for (Gommette currentGommette : gommettes) {
+	  currentGommette.render();
+	  PVector pos = currentGommette.getPosition();
+	  println("pos.x: "+pos.x);
+	  println("pos.y: "+pos.y);
+	  println("pos.z: "+pos.z);
+	}
 
 }
 
 void mousePressed() {
 	gommettes.add(new Gommette(mouseX,mouseY));
+
+
+	// println("var: "+var);
 }
 

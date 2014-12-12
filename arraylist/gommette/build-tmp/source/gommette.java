@@ -12,7 +12,7 @@ import java.io.InputStream;
 import java.io.OutputStream; 
 import java.io.IOException; 
 
-public class array extends PApplet {
+public class gommette extends PApplet {
 
 Gommette gommette; 
 
@@ -76,7 +76,7 @@ class Gommette  {
 
 }
   static public void main(String[] passedArgs) {
-    String[] appletArgs = new String[] { "array" };
+    String[] appletArgs = new String[] { "gommette" };
     if (passedArgs != null) {
       PApplet.main(concat(appletArgs, passedArgs));
     } else {

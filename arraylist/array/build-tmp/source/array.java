@@ -30,7 +30,7 @@ public void setup() {
 
 	for (int i = 0; i < nbGommettes.length; i++) {
 		nbGommettes[i] = new Gommette(tailleGommette);
-		println("ok: ");
+		// println("ok: ");
 	}
 
 	w = ((tailleGommette) * cols)+tailleGommette; 
@@ -52,8 +52,8 @@ public void draw() {
 	int gommetteIndex = 0; 
 	for (int i = 1; i <= rows; i++) {
 		for (int j = 1; j <= cols; j++) {
-			nbGommettes[gommetteIndex].setPosition(tailleGommette*i, tailleGommette*j);
-			nbGommettes[gommetteIndex].render();
+			nbGommettes[i].setPosition(tailleGommette*i, tailleGommette*j);
+			nbGommettes[i].render();
 			gommetteIndex++;
 		}
 	}

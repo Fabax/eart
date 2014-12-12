@@ -60,6 +60,10 @@ class Gommette  {
 		p.y = _y; 
 	}
 
+	PVector getPosition(){
+		return p; 
+	}
+
 	
 
 }

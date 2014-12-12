@@ -25,7 +25,6 @@ public void setup() {
 	cols = 5; 
 	rows = cols; 
 	tailleGommette = 100; 
-	// nbGommettes = new Gommette[cols*rows];
 
 	w = ((tailleGommette) * cols)+tailleGommette; 
 	h = w; 
@@ -39,20 +38,27 @@ public void setup() {
 public void draw() {
 	background(0);
 
-	for (int i = 0; i < gommettes.size(); i++) {
-	  Gommette currentGommette = gommettes.get(i);
-	  currentGommette.render();
-	}
-
-	// The second is using an enhanced loop:
-	// for (Gommette currentGommette : gommettes) {
+	// for (int i = 0; i < gommettes.size(); i++) {
+	//   Gommette currentGommette = gommettes.get(i);
 	//   currentGommette.render();
 	// }
+
+	// The second is using an enhanced loop:
+	for (Gommette currentGommette : gommettes) {
+	  currentGommette.render();
+	  PVector pos = currentGommette.getPosition();
+	  println("pos.x: "+pos.x);
+	  println("pos.y: "+pos.y);
+	  println("pos.z: "+pos.z);
+	}
 
 }
 
 public void mousePressed() {
 	gommettes.add(new Gommette(mouseX,mouseY));
+
+
+	// println("var: "+var);
 }
 
 class Gommette  {
@@ -116,6 +122,12 @@ class Gommette  {
 		p.x = _x; 
 		p.y = _y; 
 	}
+
+	public PVector getPosition(){
+		return p; 
+	}
+
+	
 
 }
   static public void main(String[] passedArgs) {
